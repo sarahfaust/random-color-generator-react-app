@@ -1,36 +1,45 @@
-import randomColor from 'randomcolor';
 import { useEffect, useState } from 'react';
 import CustomDropdown from './CustomDropdown';
-import { ColorText } from './EmotionStyles';
+
+const lumList = ['light', 'bright', 'dark'];
+
+const hueList = [
+  'red',
+  'orange',
+  'yellow',
+  'green',
+  'blue',
+  'purple',
+  'pink',
+  'monochrome',
+];
 
 export default function ChoiceButtons(props) {
   const [hue, setHue] = useState('Hue');
   const [lum, setLum] = useState('Luminosity');
-
-  const hueList = [
-    'red',
-    'orange',
-    'yellow',
-    'green',
-    'blue',
-    'purple',
-    'pink',
-    'monochrome',
-  ];
-
-  const lumList = ['light', 'bright', 'dark'];
+  const [flag, setFlag] = useState(false);
 
   useEffect(() => {
-    if (hueList.includes(hue) && lumList.includes(lum)) {
-      props.setColor(randomColor({ luminosity: lum, hue: hue }));
+    if (flag) {
+      props.generateColor({ luminosity: lum, hue: hue });
+      setFlag(false);
     }
-  }, [hue, lum]);
+  }, [hue, lum, props, flag]);
 
   return (
     <>
-      <ColorText>{props.color}</ColorText>
-      <CustomDropdown option={hue} options={hueList} setOptions={setHue} />
-      <CustomDropdown option={lum} options={lumList} setOptions={setLum} />
+      <CustomDropdown
+        option={hue}
+        options={hueList}
+        setOptions={setHue}
+        setFlag={setFlag}
+      />
+      <CustomDropdown
+        option={lum}
+        options={lumList}
+        setOptions={setLum}
+        setFlag={setFlag}
+      />
     </>
   );
 }

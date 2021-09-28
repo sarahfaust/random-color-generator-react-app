@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Dropdown, DropdownOption } from './EmotionStyles';
+import { Button, DropdownBox, DropdownOption } from './EmotionStyles';
 
 export default function CustomDropdown(props) {
   const [dropdownIsOpen, setDropdownIsOpen] = useState(false);
@@ -10,6 +10,7 @@ export default function CustomDropdown(props) {
 
   function optionSelected(currentOption) {
     props.setOptions(currentOption);
+    props.setFlag(true);
     toggleDropdown();
   }
 
@@ -17,7 +18,7 @@ export default function CustomDropdown(props) {
     <>
       <Button onClick={() => toggleDropdown()}>{props.option}</Button>
       {dropdownIsOpen && (
-        <Dropdown>
+        <DropdownBox>
           {props.options.map((currentOption) => (
             <DropdownOption
               key={currentOption}
@@ -26,7 +27,7 @@ export default function CustomDropdown(props) {
               {currentOption}
             </DropdownOption>
           ))}
-        </Dropdown>
+        </DropdownBox>
       )}
     </>
   );

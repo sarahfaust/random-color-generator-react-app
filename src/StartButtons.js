@@ -1,10 +1,9 @@
 import randomColor from 'randomcolor';
-import { Button, ColorText } from './EmotionStyles';
+import { Button } from './EmotionStyles';
 
 export default function StartButtons(props) {
   return (
     <>
-      <ColorText>{props.color}</ColorText>
       <Button
         onClick={() => {
           props.setColor(randomColor);

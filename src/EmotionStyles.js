@@ -6,38 +6,55 @@ export const ColorText = styled.p`
   font-weight: bold;
 `;
 
+export const ColorBox = styled.div`
+  background-color: ${(props) => props.color};
+  border: 4px solid white;
+  border-radius: 4px;
+  width: 200px;
+  height: 200px;
+  margin: 20px;
+`;
+
 export const Button = styled.button`
-  margin: 10px;
-  padding: 32px;
+  margin: 8px;
+  padding: 16px;
+  width: 160px;
   background-color: #acacac;
   font-size: 24px;
   border-radius: 4px;
   border: 0px;
-  color: black;
-  font-weight: bold;
+  color: #282c34;
+  font-weight: 800;
+  font-family: inherit;
+
+  text-transform: capitalize;
   &:hover {
     color: white;
   }
 `;
 
-export const Dropdown = styled.div`
-  width: 150px;
-  height: 50px;
-  position: absolute;
+export const DropdownBox = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: row;
   z-index: 1;
+  background-color: #acacac;
+  padding: 0 4px;
+  border-radius: 4px;
 `;
 
 export const DropdownOption = styled.button`
-  padding: 10px;
+  padding: 16px;
   background-color: #acacac;
-  width: 150px;
-  height: 50px;
   font-size: 16px;
   border: 0px;
-  color: black;
+  color: #282c34;
+  font-family: inherit;
+  text-transform: capitalize;
   &:hover {
-    background-color: #a1a1a1;
+    background-color: #999999;
     color: white;
+    font-weight: 600;
   }
 `;
 
@@ -45,9 +62,27 @@ export const Header = styled.header`
   background-color: ${(props) => props.color};
   min-height: 100vh;
   display: flex;
+  padding: 1rem;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  transition-timing-function: ease-in-out;
+  transition: 0.8s;
+`;
+
+export const Input = styled.input`
+  padding: 16px;
+  background-color: #acacac;
+  border: 0px;
+  width: 120px;
+  color: #282c34;
+  font-size: 16px;
+  font-family: inherit;
+  text-transform: capitalize;
+  text-align: center;
+  ::placeholder {
+    color: white;
+  }
 `;
