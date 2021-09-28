@@ -7,12 +7,14 @@ export const ColorText = styled.p`
 `;
 
 export const ColorBox = styled.div`
-  background-color: ${(props) => props.color};
+  background-color: white;
   border: 4px solid white;
   border-radius: 4px;
-  width: 200px;
-  height: 200px;
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
   margin: 20px;
+  transition-timing-function: ease-in-out;
+  transition: 0.8s;
 `;
 
 export const Button = styled.button`
@@ -76,12 +78,15 @@ export const Input = styled.input`
   padding: 16px;
   background-color: #acacac;
   border: 0px;
-  width: 120px;
+  width: 80px;
   color: #282c34;
   font-size: 16px;
   font-family: inherit;
   text-transform: capitalize;
   text-align: center;
+  -webkit-appearance: none;
+  margin: 0;
+  -moz-appearance: textfield;
   ::placeholder {
     color: white;
   }

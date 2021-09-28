@@ -18,8 +18,10 @@ function App() {
   const [color, setColor] = useState('#282c34');
   const [dropdownIsOpen, setDropdownIsOpen] = useState(false);
   const [boxIsVisible, setBoxIsVisible] = useState(false);
-  const [boxWidth, setBoxWidth] = useState(0);
-  const [boxHeight, setBoxHeight] = useState(0);
+  const [boxWidth, setBoxWidth] = useState('Width');
+  const [boxHeight, setBoxHeight] = useState('Height');
+  const [width, setWidth] = useState('');
+  const [height, setHeight] = useState('');
 
   function toggleDropdown() {
     setDropdownIsOpen((previousState) => !previousState);
@@ -30,13 +32,22 @@ function App() {
   }
 
   function toggleBox() {
-    setBoxIsVisible((previousState) => !previousState);
+    // is there a nicer way to solve this?
+    // currently using extra state variables (height and width)
+    // to ensure state is passed to props only on button click
+    setWidth(`${boxWidth}px`);
+    setHeight(`${boxHeight}px`);
+    setBoxIsVisible(true);
   }
 
   return (
     <div className="App">
       <Header color={color}>
-        {boxIsVisible ? <ColorBox /> : <ColorText>{color}</ColorText>}
+        {boxIsVisible ? (
+          <ColorBox width={width} height={height} />
+        ) : (
+          <ColorText>{color}</ColorText>
+        )}
         {choose === 'generate' && (
           <StartButtons
             setChoose={setChoose}
@@ -59,8 +70,8 @@ function App() {
               <DropdownOption
                 onClick={() => {
                   setBoxIsVisible(false);
-                  setBoxWidth(0);
-                  setBoxHeight(0);
+                  setBoxWidth('Width');
+                  setBoxHeight('Height');
                 }}
               >
                 Reset
@@ -74,6 +85,8 @@ function App() {
               <Input
                 placeholder="Height"
                 type="number"
+                min="0"
+                max="1000"
                 value={boxHeight}
                 onChange={(event) => setBoxHeight(event.currentTarget.value)}
               />
